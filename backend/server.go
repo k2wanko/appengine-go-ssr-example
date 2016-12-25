@@ -35,10 +35,9 @@ func serverRoot(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Add("content-type", "text/html")
 
+	// For standarone.
 	if f, ok := w.(http.Flusher); ok {
 		f.Flush()
-	} else {
-		panic(errors.New("no flusher"))
 	}
 
 	ComponentCahce(ctx, vm)
