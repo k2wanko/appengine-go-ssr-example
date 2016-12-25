@@ -1,0 +1,24 @@
+runtime: go
+api_version: go1
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /server-build\.js
+  static_files: app/server-build.js
+  upload: app/server-build\.js$
+  application_readable: true
+  login: admin
+  secure: always
+
+- url: /(.+(\.js|\.css|\.png))$
+  static_files: app/\1
+  upload: app/(.+(\.js|\.css|\.png))$
+  expiration: 10m
+  application_readable: true
+  secure: always
+
+- url: /.*
+  script: _go_app
