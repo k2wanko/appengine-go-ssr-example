@@ -1,13 +1,20 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
+
 var webpackModule = {
   rules: [
     {
       test: /\.vue$/,
       loader: 'vue',
       options: {
-        // vue-loader options go here
+        loaders: {
+          css: ExtractTextPlugin.extract({
+            loader: 'css-loader',
+            fallbackLoader: 'vue-style-loader'
+          })
+        }
       }
     },
     {
@@ -46,7 +53,10 @@ const client = {
     historyApiFallback: true,
     noInfo: true
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new ExtractTextPlugin('style.css')
+  ]
 }
 
 var NodeSourcePlugin = require('webpack/lib/node/NodeSourcePlugin')
@@ -66,7 +76,7 @@ var server = Object.assign({}, client, {
     filename: 'server-build.js',
     libraryTarget: 'commonjs2'
   }),
-  plugins: [
+  plugins: (client.plugins || []).concat([
     new NodeSourcePlugin(
       {
         console: true,
@@ -78,7 +88,7 @@ var server = Object.assign({}, client, {
         __filename: 'mock',
         __dirname: 'mock'
       }),
-  ],
+  ]),
   module: webpackModule,
 })
 
