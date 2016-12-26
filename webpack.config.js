@@ -70,7 +70,7 @@ var server = Object.assign({}, client, {
     new NodeSourcePlugin(
       {
         console: true,
-        process: true,
+        process: false,
         global: true,
         Buffer: true,
         setImmediate: true,
