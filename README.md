@@ -9,6 +9,7 @@ require [GAE/Go SDK](https://cloud.google.com/appengine/docs/go/download), [node
 ```bash
 $ git clone https://github.com/k2wanko/appengine-ssr-example.git
 $ npm install # or yarn
+$ go get -v ./...
 $ npm run dev
 ```
 
