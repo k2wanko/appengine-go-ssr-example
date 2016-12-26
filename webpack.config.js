@@ -32,7 +32,7 @@ var webpackModule = {
 const client = {
   entry: './src/client.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './backend/app'),
     publicPath: '/',
     filename: 'build.js'
   },
