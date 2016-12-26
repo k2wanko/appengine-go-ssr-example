@@ -1,4 +1,3 @@
-import './polyfill.js'
 import { app, router } from './app'
 import { createRenderer } from 'vue-server-renderer'
 

@@ -33,6 +33,27 @@ func serverRoot(w http.ResponseWriter, r *http.Request) {
 		return goja.Undefined()
 	})
 
+	// TODO: Node process emulator.
+	// process := vm.NewObject()
+	// env := vm.NewObject()
+	// for _, e := range os.Environ() {
+	// 	pair := strings.Split(e, "=")
+	// 	env.Set(pair[0], pair[1])
+	// }
+	// process.Set("env", env)
+	// setTimeout, ok := goja.AssertFunction(vm.Get("setTimeout"))
+	// if !ok {
+	// 	panic(errors.New("setTimeout is not fcuntion"))
+	// }
+	// process.Set("nextTick", func(c goja.FunctionCall) goja.Value {
+	// 	if len(c.Arguments) == 0 {
+	// 		return vm.NewGoError(errors.New("arguments is 0"))
+	// 	}
+	// 	setTimeout(nil, c.Argument(0))
+	// 	return goja.Undefined()
+	// })
+	// vm.Set("process", process)
+
 	w.Header().Add("content-type", "text/html")
 
 	// For standarone.
