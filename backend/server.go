@@ -54,6 +54,9 @@ func serverRoot(w http.ResponseWriter, r *http.Request) {
 		panic(errors.New("not function render"))
 	}
 
+	jsCtx := vm.NewObject()
+	jsCtx.Set("url", r.URL.String())
+
 	resObj := vm.NewObject()
 	resObj.Set("write", func(c goja.FunctionCall) goja.Value {
 		data := c.Argument(0).String()
@@ -71,7 +74,9 @@ func serverRoot(w http.ResponseWriter, r *http.Request) {
 		return goja.Undefined()
 	})
 
-	_, err = renderStream(nil, resObj)
+	jsCtx.Set("res", resObj)
+
+	_, err = renderStream(nil, jsCtx)
 	if jserr, ok := err.(*goja.Exception); ok {
 		log.Criticalf(ctx, "%#v", jserr.Value().String())
 	} else if err != nil {

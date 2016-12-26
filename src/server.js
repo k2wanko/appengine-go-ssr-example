@@ -1,5 +1,5 @@
 import './polyfill.js'
-import CreateApp from './main'
+import { app, router } from './app'
 import { createRenderer } from 'vue-server-renderer'
 
 import layout from 'html!./index.html'
@@ -17,9 +17,10 @@ const renderer = createRenderer({
     cache: global.ComponentCache,
 })
 
-export function renderStream(res) {
-    const vm = CreateApp()
-    const stream = renderer.renderToStream(vm)
+export function renderStream({ url, res }) {
+    router.push(url)
+
+    const stream = renderer.renderToStream(app)
     stream.once('data', () => {
         res.write(html.head)
     })

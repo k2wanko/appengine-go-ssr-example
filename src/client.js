@@ -1,3 +1,6 @@
-import createApp from './main'
+import { app, store } from './app'
 
-createApp().$mount("#app")
+// TODO
+// store.replaceState(window.__INITIAL_STATE__)
+
+app.$mount("#app")
