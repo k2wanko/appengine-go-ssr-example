@@ -24,7 +24,8 @@
     "json-loader": "^0.5.4",
     "vue-loader": "^10.0.2",
     "vue-template-compiler": "^2.1.7",
-    "webpack": "2.1.0-beta.25"
+    "webpack": "2.1.0-beta.25",
+    "webpack-dev-server": "2.1.0-beta.8"
   },
   "license": "MIT",
   "private": true,
@@ -32,8 +33,9 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config build/webpack.config.js --progress --hide-modules",
     "dev": "goapp serve backend",
-    "dev:build": "webpack --progress --hide-modules",
+    "dev:build": "webpack --config build/webpack.config.js --progress --hide-modules",
     "postinstall": "npm run dev:build",
+    "webpack-dev-server": "webpack-dev-server --content-base ./src/ --port 8001 --config build/webpack.config.js --progress --hot --inline",
     "test": "echo 'No test' && exit 1"
   }
 }
