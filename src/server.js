@@ -1,7 +1,7 @@
 import { app, router } from './app'
 import { createRenderer } from 'vue-server-renderer'
 
-import layout from 'html!./index.html'
+import layout from './index.html'
 
 const html = (() => {
     const target = '<div id="app"></div>'

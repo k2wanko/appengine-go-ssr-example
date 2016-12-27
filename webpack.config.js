@@ -32,6 +32,14 @@ var webpackModule = {
     {
       test: /\.json$/,
       loader: 'json'
+    },
+    {
+      test: /\.html$/,
+      loader: 'html',
+      query: {
+        minimize: process.env.NODE_ENV === 'production',
+        removeAttributeQuotes: false,
+      }
     }
   ]
 }
