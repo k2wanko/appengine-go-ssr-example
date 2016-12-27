@@ -30,7 +30,7 @@
   "private": true,
   "repository": "https://github.com/k2wanko/appengine-ssr-example.git",
   "scripts": {
-    "build": "NODE_ENV=production webpack --progress --hide-modules",
+    "build": "NODE_ENV=production webpack --config build/webpack.config.js --progress --hide-modules",
     "dev": "goapp serve backend",
     "dev:build": "webpack --progress --hide-modules",
     "postinstall": "npm run dev:build",

@@ -47,7 +47,7 @@ var webpackModule = {
 const client = {
   entry: './src/client.js',
   output: {
-    path: path.resolve(__dirname, './backend/app'),
+    path: path.resolve(__dirname, '../backend/app'),
     publicPath: '/',
     filename: 'build.js'
   },
@@ -63,7 +63,9 @@ const client = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new ExtractTextPlugin('style.css')
+    new ExtractTextPlugin('style.css'),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ]
 }
 
