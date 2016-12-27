@@ -13,11 +13,10 @@ handlers:
   login: admin
   secure: always
 
-- url: /(.+(\.js|\.css|\.png))$
+- url: /(.+(\.js|\.css|\.png|\.map))$
   static_files: app/\1
-  upload: app/(.+(\.js|\.css|\.png))$
+  upload: app/(.+(\.js|\.css|\.png|\.map))$
   expiration: 10m
-  application_readable: true
   secure: always
 
 - url: /.*
