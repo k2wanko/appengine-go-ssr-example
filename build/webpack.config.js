@@ -62,8 +62,6 @@ const client = {
   devtool: '#eval-source-map',
   plugins: [
     new ExtractTextPlugin('style.css'),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
   ]
 }
 

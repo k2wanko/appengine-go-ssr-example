@@ -17,11 +17,13 @@
     "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-preset-es2015": "^6.18.0",
+    "concurrently": "^3.1.0",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
     "json-loader": "^0.5.4",
+    "rimraf": "^2.5.4",
     "vue-loader": "^10.0.2",
     "vue-template-compiler": "^2.1.7",
     "webpack": "2.1.0-beta.25",
@@ -31,11 +33,10 @@
   "private": true,
   "repository": "https://github.com/k2wanko/appengine-ssr-example.git",
   "scripts": {
-    "build": "NODE_ENV=production webpack --config build/webpack.config.js --progress --hide-modules",
-    "dev": "goapp serve backend",
+    "build": "rimraf backend/app/* && NODE_ENV=production webpack --config build/webpack.config.js --progress --hide-modules",
+    "dev": "concurrently \"node build/dev-server\" \"goapp serve backend\"",
     "dev:build": "webpack --config build/webpack.config.js --progress --hide-modules",
     "postinstall": "npm run dev:build",
-    "webpack-dev-server": "webpack-dev-server --content-base ./src/ --port 8001 --config build/webpack.config.js --progress --hot --inline",
     "test": "echo 'No test' && exit 1"
   }
 }
