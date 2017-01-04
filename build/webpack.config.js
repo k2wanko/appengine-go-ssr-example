@@ -14,7 +14,7 @@ const client = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue',
+        loader: 'vue-loader',
         options: {
           loaders: {
             css: ExtractTextPlugin.extract({
@@ -26,23 +26,23 @@ const client = {
       },
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file',
+        loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
         }
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.html$/,
-        loader: 'html',
+        loader: 'html-loader',
         query: {
           minimize: process.env.NODE_ENV === 'production',
           removeAttributeQuotes: false,
