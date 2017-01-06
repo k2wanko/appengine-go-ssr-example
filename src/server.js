@@ -1,7 +1,9 @@
 import { app, router } from './app'
+import Vue from 'vue'
 import { createRenderer } from 'vue-server-renderer'
-
 import layout from './index.html'
+
+Vue.config.devtools = false
 
 const html = (() => {
     const target = '<div id="app"></div>'
@@ -13,10 +15,11 @@ const html = (() => {
 })()
 
 const renderer = createRenderer({
-    cache: global.ComponentCache,
+    cache: global['__ComponentCache__'],
 })
 
-export function renderStream({ url, res }) {
+module.exports = function ({ res, url }) {
+// export function renderStream({ url, res }) {
     router.push(url)
 
     const stream = renderer.renderToStream(app)

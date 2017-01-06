@@ -1,41 +1,34 @@
 package backend
 
 import (
+	"github.com/k2wanko/go-vue/server/render"
 	"golang.org/x/net/context"
 
-	"github.com/dop251/goja"
 	"google.golang.org/appengine/log"
 	"google.golang.org/appengine/memcache"
 )
 
 type componentCahce struct {
 	ctx context.Context
-	vm  *goja.Runtime
 }
 
-func (c *componentCahce) get(fc goja.FunctionCall) (v goja.Value) {
-	key := fc.Argument(0).String()
+func NewComponentCache(c context.Context) render.ComponentCacher {
+	return &componentCahce{ctx: c}
+}
+
+func (c *componentCahce) Get(key string) ([]byte, error) {
 	item, err := memcache.Get(c.ctx, key)
 	if err != nil {
 		log.Warningf(c.ctx, "memcache error %v", err)
-		return
+		return nil, nil
 	}
-
-	return c.vm.ToValue(string(item.Value))
+	return item.Value, nil
 }
 
-func (c *componentCahce) set(fc goja.FunctionCall) (v goja.Value) {
+func (c *componentCahce) Set(key string, v []byte) error {
 	memcache.Set(c.ctx, &memcache.Item{
-		Key:   fc.Argument(0).String(),
-		Value: []byte(fc.Argument(1).String()),
+		Key:   key,
+		Value: v,
 	})
-	return
-}
-
-func ComponentCahce(ctx context.Context, vm *goja.Runtime) {
-	c := &componentCahce{ctx: ctx, vm: vm}
-	o := vm.NewObject()
-	o.Set("get", c.get)
-	o.Set("set", c.set)
-	vm.Set("ComponentCache", o)
+	return nil
 }
