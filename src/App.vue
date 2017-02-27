@@ -4,7 +4,7 @@
     <h1>{{ msg }}</h1>
     <router-link to="/">Top</router-link>
     <router-link to="/about">About</router-link>
-    <router-link to="/404">404</router-link>
+    <router-link to="/todo">Todo</router-link>
     <div>
       <router-view class="view"></router-view>
     </div>

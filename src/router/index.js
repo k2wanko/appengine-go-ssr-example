@@ -5,6 +5,7 @@ Vue.use(Router)
 
 import Top from '../views/Top.vue'
 import About from '../views/About.vue'
+import Todo from '../views/Todo.vue'
 
 export default new Router({
     mode: 'history',
@@ -12,5 +13,6 @@ export default new Router({
     routes: [
         { path: '/', component: Top },
         { path: '/about', component: About },
+        { path: '/todo', component: Todo },
     ],
 })

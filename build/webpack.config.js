@@ -60,6 +60,7 @@ const client = {
     noInfo: true
   },
   devtool: '#eval-source-map',
+  performance: { hints: false },
   plugins: [
     new ExtractTextPlugin('style.css'),
   ]

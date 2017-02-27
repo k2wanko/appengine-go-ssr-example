@@ -19,9 +19,33 @@ const renderer = createRenderer({
     cache: global['__ComponentCache__'],
 })
 
+function run(context) {
+    router.push(context.url)
+    const matchedComponents = router.getMatchedComponents()
+    if (!matchedComponents.length) {
+        context.code = 404
+    }
+
+    return Promise.all(matchedComponents.map(component => {
+        if (component.preFetch) {
+            return component.preFetch(store)
+        }
+    })).then(() => {
+        context.initialState = store.state
+        return app
+    })
+}
+
 module.exports = function (context) {
     const {url, res} = context
+
+    let code = 200
+
     router.push(url)
+    const matchedComponents = router.getMatchedComponents()
+    if (!matchedComponents.length) {
+        code = 404
+    }
 
     const stream = renderer.renderToStream(app)
     stream.once('data', () => {
@@ -31,6 +55,7 @@ module.exports = function (context) {
         res.write(chunk)
     })
     stream.on('end', () => {
+        context.code = code
         res.write(
             `<script>window.__INITIAL_STATE__=${
             serialize(store.state, { isJSON: true })
