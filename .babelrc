@@ -1,14 +1,5 @@
 {
   "presets": [
-    [
-      "es2015",
-      {
-        "modules": false
-      }
-    ]
-  ],
-  "plugins": [
-    "transform-object-assign",
-    "transform-object-rest-spread"
+    ["env", { "modules": false }]
   ]
 }

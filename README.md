@@ -1,16 +1,18 @@
-# App Engine Server side rendering
+# appengine-ssr-example
 
-Server side rendering with [Vue.js](https://github.com/vuejs/vue) on [GAE/Go](https://cloud.google.com/appengine/docs/go/)
+> A Vue.js project
 
-# Setup
+## Build Setup
 
-require [GAE/Go SDK](https://cloud.google.com/appengine/docs/go/download), [node.js](https://nodejs.org/en/)
+``` bash
+# install dependencies
+npm install
 
-```bash
-$ git clone https://github.com/k2wanko/appengine-ssr-example.git
-$ npm install # or yarn
-$ go get -v ./...
-$ npm run dev
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
 ```
 
-access to http://localhost:8080
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).

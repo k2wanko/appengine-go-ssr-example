@@ -1,6 +1,4 @@
-import { app, store } from './app'
+import { createApp } from './main'
 
-// TODO
-// store.replaceState(window.__INITIAL_STATE__)
-
-app.$mount("#app")
+const app = createApp()
+app.$mount('#app')
