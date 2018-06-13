@@ -7,7 +7,7 @@ Server side rendering with [Vue.js](https://github.com/vuejs/vue) on [GAE/Go](ht
 require [GAE/Go SDK](https://cloud.google.com/appengine/docs/go/download), [node.js](https://nodejs.org/en/)
 
 ```bash
-$ git clone https://github.com/k2wanko/appengine-ssr-example.git
+$ git clone https://github.com/k2wanko/appengine-go-ssr-example.git
 $ npm install # or yarn
 $ go get -v ./...
 $ npm run dev
